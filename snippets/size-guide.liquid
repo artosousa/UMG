@@ -36,6 +36,7 @@
             </table>
         </div>
     {%- elsif size_data.alpha -%}
+        {{ size_data.alpha | json }}
         <div class="size-guide">
             <h3>{{ size_data.alpha.title }}</h3>
             <table>
