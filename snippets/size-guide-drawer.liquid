@@ -10,9 +10,9 @@
   @example
     {% render 'size-guide-drawer' %}
 {% enddoc %}
-
-{{ 'component-size-guide-drawer.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'size-guide-drawer.js' | asset_url }}" defer="defer"></script>
+{{ 'component-size-guide-drawer.css' | asset_url | stylesheet_tag }}
+
 
 <size-guide-drawer id="{{ drawer_id }}" class="drawer">
   <div class="size-guide-drawer__inner-wrapper size-guide-drawer">
