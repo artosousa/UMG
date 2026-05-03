@@ -2,6 +2,11 @@
   @description
     Renders the size-guide drawer component.
 
+  @param {string} drawer_id - A unique ID for the drawer element.
+  @param {string} section_id - The ID of the parent section to ensure unique ARIA labeling.
+  @param {string} block_id - The ID of the parent block (if applicable).
+  @param {product} product_object - The product object to pull size guide data from.
+
   @example
     {% render 'size-guide-drawer' %}
 {% enddoc %}
@@ -12,7 +17,7 @@
   
 </style>
 
-<size-guide-drawer id="size-drawer" class="drawer">
+<size-guide-drawer id="{{ drawer_id }}" class="drawer">
   <div class="size-guide-drawer__inner-wrapper cart-drawer">
     <div class="size-guide-drawer__overlay cart-drawer__overlay"></div>
     <div
@@ -36,7 +41,7 @@
         </button>
       </div>
       <div class="drawer__contents size-guide-drawer__scroll">
-        {% render 'size-guide', product_object: product %}
+        {% render 'size-guide', product_object: product_object %}
       </div>
     </div>
   </div>
