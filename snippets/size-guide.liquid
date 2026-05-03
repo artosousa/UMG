@@ -8,7 +8,7 @@
 {% enddoc %}
 
 
-{{ product_object.metafields.custom.size_guide | json }}
+{{ product_object.metafields.custom.size_guide.value | json }}
 {%- liquid  
     assign  chart_data = product_object.metafields.custom.size_guide 
     assign size_data = chart_data.value
