@@ -1,0 +1,43 @@
+{% doc %}
+  @description
+    Renders the size-guide drawer component.
+
+  @example
+    {% render 'size-guide-drawer' %}
+{% enddoc %}
+
+{{ 'component-size-guide-drawer.css' | asset_url | stylesheet_tag }}
+
+<style>
+  
+</style>
+
+<size-guide-drawer id="{{ drawer_id }}" class="drawer">
+  <div class="size-guide-drawer__inner-wrapper cart-drawer">
+    <div class="size-guide-drawer__overlay cart-drawer__overlay"></div>
+    <div
+      class="drawer__inner"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="SizeGuideDrawerHeading-{{ section_id }}-{{ block_id }}"
+      tabindex="-1"
+    >
+      <div class="drawer__header">
+        <h2 id="SizeGuideDrawerHeading-{{ section_id }}-{{ block_id }}" class="drawer__heading">
+          Size guide
+        </h2>
+        <button
+          type="button"
+          class="drawer__close"
+          onclick="this.closest('size-guide-drawer').close()"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          {% render 'icon-close' %}
+        </button>
+      </div>
+      <div class="drawer__contents size-guide-drawer__scroll">
+        {% render 'size-guide', product_object: product %}
+      </div>
+    </div>
+  </div>
+</size-guide-drawer>
