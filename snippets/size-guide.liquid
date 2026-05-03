@@ -25,30 +25,31 @@
                 assign chart = size_data.alpha
         endcase
     -%}
-{%- endfor -%}
-<div class="sizing-guide-wrapper">
-    
 
-    {%- if chart -%}
-        <div class="size-guide">
-            <h3>{{ chart.title }}</h3>
-            <table>
-                {%- for row in chart.rows -%}
-                    {%- if forloop.first -%}
-                        <tr>
+    <div class="sizing-guide-wrapper">
+        
+
+        {%- if chart -%}
+            <div class="size-guide">
+                <h3>{{ chart.title }}</h3>
+                <table>
+                    {%- for row in chart.rows -%}
+                        {%- if forloop.first -%}
+                            <tr>
+                                {%- for label in row -%}
+                                    <th>{{ label }}</th>
+                                {%- endfor -%}
+                            </tr>
+                        {%- else -%}
+                            <tr>
                             {%- for label in row -%}
-                                <th>{{ label }}</th>
+                                <td>{{ label }}</td>
                             {%- endfor -%}
-                        </tr>
-                    {%- else -%}
-                        <tr>
-                          {%- for label in row -%}
-                            <td>{{ label }}</td>
-                          {%- endfor -%}
-                        </tr>
-                    {%- endif -%}
-                {%- endfor -%}
-            </table>
-        </div>
-    {%- endif -%}
-</div>
+                            </tr>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </table>
+            </div>
+        {%- endif -%}
+    </div>
+{%- endfor -%}
