@@ -10,15 +10,8 @@
 
 {{ product_object.metafields.custom.size_guide.value | json }}
 {%- liquid  
-    assign  chart_data = product_object.metafields.custom.size_guide 
+    assign  chart_data = product_object.metafields.custom.size_guide
     assign size_data = chart_data.value
 -%}
 
-<div class="size-guide-wrapper">
-    {%- if size_data.alpha -%}
-        <div class="size-guide">
-            {{ size_data | json }}
-        </div>
-    {%- else -%}
-    {%- endif -%}
-</div>
+{{ size_data | json }}
