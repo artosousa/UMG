@@ -3,7 +3,7 @@
   }
   size-guide-drawer {
     position: fixed;
-    z-index: 1000;
+    z-index: 1290;
     top: 0;
     left: 0;
     width: 100vw;
@@ -17,7 +17,7 @@
 
 .drawer {
     position: fixed;
-    z-index: 1000;
+    z-index: 1290;
     left: 0;
     top: 0;
     width: 100vw;
