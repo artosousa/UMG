@@ -7,16 +7,5 @@
   {% render 'size-guide', product_object: product %}
 {% enddoc %}
 
-{%- liquid  
-    assign  chart_data = product_object.metafields.custom.size_guide 
-    assign size_data = chart_data.value
--%}
 
-<div class="size-guide-wrapper">
-    {%- if size_data.alpha -%}
-        <div class="size-guide">
-            {{ size_data | json }}
-        </div>
-    {%- else -%}
-    {%- endif -%}
-</div>
+{{ product_object | json }}
