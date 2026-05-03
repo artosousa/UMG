@@ -15,6 +15,7 @@
 
 <div class="sizing-guide-wrapper">
     {%- if size_data.numerical -%}
+        {{ size_data.numerical | json }}
         <div class="size-guide">
             <h3>{{ size_data.numerical.title }}</h3>
         </div>
