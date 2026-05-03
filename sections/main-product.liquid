@@ -217,12 +217,6 @@
                   >
                     Size guide
                   </button>
-                  {%- render 'size-guide-drawer',
-                    product: product,
-                    section_id: section.id,
-                    block_id: block.id,
-                    drawer_id: drawer_id
-                  -%}
                 </div>
               {%- endif -%}
             {%- when 'quantity_selector' -%}
@@ -598,6 +592,31 @@
   </script>
   <script src="{{ 'selling-plans.js' | asset_url }}" defer="defer"></script>
   {% comment %}<script src="{{ 'selling-plan-docs.js' | asset_url }}" defer="defer"></script>{% endcomment %}
+
+  {%- comment -%}
+    Size guide drawers must live here (section root), not inside product-info / product__column-sticky.
+    Sticky + z-index on that column creates a stacking context below the header (z-index 3–4), so fixed drawers nested there paint under the header.
+  {%- endcomment -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'sizeguide' -%}
+      {%- liquid
+        assign size_data_footer = product.metafields.custom.size_guide.value
+        assign has_size_guide_footer = false
+        if size_data_footer.numerical or size_data_footer.alpha
+          assign has_size_guide_footer = true
+        endif
+        assign drawer_id_footer = 'SizeGuideDrawer-' | append: section.id | append: '-' | append: block.id
+      -%}
+      {%- if has_size_guide_footer -%}
+        {%- render 'size-guide-drawer',
+          product: product,
+          section_id: section.id,
+          block_id: block.id,
+          drawer_id: drawer_id_footer
+        -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
 </section>
 
 {% schema %}
