@@ -13,4 +13,10 @@
     assign size_data = chart_data.value
 -%}
 
-{{ size_data.numerical | json }}
+<div class="sizing-guide-wrapper">
+    {%- if size_data.numerical -%}
+        <div class="size-guide">
+            <h2>{{ size_data.numerical.title }}</h2>
+        </div>
+    {%- endif -%}
+</div>
