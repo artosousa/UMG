@@ -1,0 +1,51 @@
+{% doc %}
+  Renders the size guide block. Uses product metafield `custom.size_guide`.
+
+  @param {object} product_object - Product to resolve size guide content from
+
+  @example
+  {% render 'size-guide', product_object: product %}
+{% enddoc %}
+
+
+{%- liquid  
+    assign chart_data = product_object.metafields.custom.size_guide
+    assign size_data = chart_data.value
+    assign chart_keys = 'numerical,alpha' | split: ','
+-%}
+
+{%- for key in chart_keys -%}
+    {%- liquid 
+        assign chart = nil
+        case key
+            when 'numerical'
+                assign chart = size_data.numerical
+            when 'alpha'
+                assign chart = size_data.alpha
+        endcase
+    -%}
+    <div class="sizing-guide-wrapper">
+        {%- if chart -%}
+            <div class="size-guide">
+                <h3>{{ chart.title }}</h3>
+                <table>
+                    {%- for row in chart.rows -%}
+                        {%- if forloop.first -%}
+                            <tr>
+                                {%- for label in row -%}
+                                    <th>{{ label }}</th>
+                                {%- endfor -%}
+                            </tr>
+                        {%- else -%}
+                            <tr>
+                            {%- for label in row -%}
+                                <td>{{ label }}</td>
+                            {%- endfor -%}
+                            </tr>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </table>
+            </div>
+        {%- endif -%}
+    </div>
+{%- endfor -%}

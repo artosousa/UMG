@@ -197,6 +197,27 @@
                   </div>
                 </details>
               </div>
+            {%- when 'sizeguide' -%}
+              {%- liquid
+                assign size_data = product.metafields.custom.size_guide.value
+                assign has_size_guide = false
+                if size_data.numerical or size_data.alpha
+                  assign has_size_guide = true
+                endif
+                assign drawer_id = 'SizeGuideDrawer-' | append: section.id | append: '-' | append: block.id
+              -%}
+              {%- if has_size_guide -%}
+                <div class="product__size-guide" {{ block.shopify_attributes }}>
+                  <a
+                    href="#"
+                    aria-haspopup="dialog"
+                    aria-controls="{{ drawer_id }}"
+                    onclick="event.preventDefault(); document.getElementById('{{ drawer_id }}').open(this)"
+                  >
+                    Size guide
+                  </a>
+                </div>
+              {%- endif -%}
             {%- when 'quantity_selector' -%}
               <div
                 id="Quantity-Form-{{ section.id }}"
@@ -569,7 +590,28 @@
     }
   </script>
   <script src="{{ 'selling-plans.js' | asset_url }}" defer="defer"></script>
-  {% comment %}<script src="{{ 'selling-plan-docs.js' | asset_url }}" defer="defer"></script>{% endcomment %}
+
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'sizeguide' -%}
+      {%- liquid
+        assign size_data_footer = product.metafields.custom.size_guide.value
+        assign has_size_guide_footer = false
+        if size_data_footer.numerical or size_data_footer.alpha
+          assign has_size_guide_footer = true
+        endif
+        assign drawer_id_footer = 'SizeGuideDrawer-' | append: section.id | append: '-' | append: block.id
+      -%}
+      {%- if has_size_guide_footer -%}
+        {%- render 'size-guide-drawer',
+          product: product,
+          section_id: section.id,
+          block_id: block.id,
+          drawer_id: drawer_id_footer
+        -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
 </section>
 
 {% schema %}
@@ -622,6 +664,11 @@
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
       "limit": 1
+    },
+    {
+      "type": "sizeguide",
+      "name": "Size Guide",
+      "limit": 1,
     },
     {
       "type": "sku",
