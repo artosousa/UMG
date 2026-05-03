@@ -28,7 +28,14 @@
         <h2 id="SizeGuideDrawerHeading-{{ section_id }}-{{ block_id }}" class="drawer__heading">
           Size guide
         </h2>
-       
+        <button
+          type="button"
+          class="drawer__close"
+          onclick="this.closest('size-guide-drawer').close()"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          {% render 'icon-close' %}
+        </button>
       </div>
       <div class="drawer__contents size-guide-drawer__scroll">
         {% render 'size-guide', product_object: product %}
