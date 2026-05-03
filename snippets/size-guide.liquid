@@ -37,9 +37,9 @@
         </div>
     {%- elsif size_data.alpha -%}
         <div class="size-guide">
-            <h3>{{ size_data.numerical.title }}</h3>
+            <h3>{{ size_data.alpha.title }}</h3>
             <table>
-                {%- for row in size_data.numerical.rows -%}
+                {%- for row in size_data.alpha.rows -%}
                     {%- if forloop.first -%}
                         <tr>
                             {%- for label in row -%}
