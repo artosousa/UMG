@@ -1,19 +1,4 @@
-.drawer {
-  visibility: hidden;
-}
-size-guide-drawer {
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100%;
-}
-.size-guide-drawer__scroll {
-  overflow-y: auto;
-  max-height: 100%;
-  padding-bottom: 1.5rem;
-}
+
 .drawer {
   position: fixed;
   z-index: 1000;
