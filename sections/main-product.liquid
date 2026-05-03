@@ -197,6 +197,8 @@
                   </div>
                 </details>
               </div>
+            {%- when 'sizeguide' -%}
+              {%- render 'size-guide', product_object: product -%}
             {%- when 'quantity_selector' -%}
               <div
                 id="Quantity-Form-{{ section.id }}"
