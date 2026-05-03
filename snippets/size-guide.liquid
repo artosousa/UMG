@@ -21,11 +21,11 @@
             <table>
                 {%- for row in size_data.numerical.rows -%}
                     {%- if forloop.first -%}
-                        <th>
-                          {%- for label in row -%}
-                            <td>{{ label }}</td>
+                       <tr>
+                        {%- for label in row -%}
+                            <th>{{ label }}</th>
                           {%- endfor -%}
-                        </th>
+                        </tr>
                     {%- else -%}
                         <tr>
                           {%- for label in row -%}
